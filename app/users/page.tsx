@@ -5,7 +5,12 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 import PageWithTitle from '@/components/ui/page-with-title'
 
-export default async function Users() {
+export default async function Users({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  console.log(searchParams)
   const users = await fetchUsers()
 
   return (
