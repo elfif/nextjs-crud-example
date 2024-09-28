@@ -50,7 +50,9 @@ export default async function Users({
                     </Table.Td>
                     <Table.Td>
                       <div className='flex flex-row gap-x-2'>
-                        <Button size='sm'>Edit</Button>
+                        <Link href={`/users/${user.id}/edit`}>
+                            <Button size='sm'>Edit</Button>
+                        </Link>
                         <Button variant={'destructive'} size='sm'>
                           Delete
                         </Button>

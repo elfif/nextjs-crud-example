@@ -14,3 +14,19 @@ export async function fetchUsers(): Promise<User[]> {
     ],
   })
 }
+
+export async function fetchUserById(id: string): Promise<User | null> {
+  // Function to fetch a user by their ID.
+  const user = await db.user.findUnique({
+    where: {
+      id,
+    },
+  })
+
+  if (!user) {
+    // If the user is not found, return a 404 error.
+    throw notFound()
+  }
+
+  return user
+}
