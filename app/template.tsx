@@ -11,7 +11,7 @@ export type ToastCookie = {
 }
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  const toast = useToast()
+  const { toast } = useToast()
 
   const entries: ToastCookie[] = [
     { key: 'user.created', value: 'Utilisateur créé', type: 'success' },
@@ -35,7 +35,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
         break
     }
     Cookies.remove('toast')
-    toast?.toast({ description: toastData.value, className: className })
+    const { dismiss } = toast({ description: toastData.value, className: className })
+    setTimeout(() => {
+      dismiss()
+    }, 5000)
   }
 
   return (
