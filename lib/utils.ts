@@ -6,6 +6,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/**
+ * @description type guard to check if a string is a valid E164 phone number
+ * @param value 
+ * @returns boolean
+ */
 export function isE164Number(value: string | undefined): value is E164Number {
   return value !== undefined && /^\+[1-9]\d{1,14}$/.test(value)
 }
