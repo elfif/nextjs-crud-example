@@ -14,3 +14,15 @@ export function cn(...inputs: ClassValue[]) {
 export function isE164Number(value: string | undefined): value is E164Number {
   return value !== undefined && /^\+[1-9]\d{1,14}$/.test(value)
 }
+
+/**
+ * @description format a date to a string
+ * @param date
+ * @returns 
+ */
+export function formatDate(date: Date | undefined): string {
+  if (!date) {
+    return ''
+  }
+  return date.toISOString().split('T')[0]
+} 

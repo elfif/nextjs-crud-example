@@ -6,6 +6,7 @@ import { decode } from 'decode-formdata'
 export const userFormDataDecoder = (formData: FormData) => {
   return decode(formData, {
     booleans: ['admin'],
+    dates: ['birthDate'],
   })
 }
 
@@ -27,6 +28,7 @@ export const userCreateSchema = z
     state: z.string().min(3).optional(),
     country: z.string().min(3).optional(),
     admin: z.boolean().optional(),
+    birthDate: z.date().optional(),
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
@@ -50,6 +52,7 @@ export const userUpdateSchema = z
     state: z.string().min(3).optional(),
     country: z.string().min(3).optional(),
     admin: z.boolean().optional(),
+    birthDate: z.date().optional(),
   })
 
 // The FormState that contains all the validation errors
@@ -67,6 +70,7 @@ export type UserFormState = {
     state?: string[]
     country?: string[]
     admin?: string[]
+    birthDate?: string[]
     _form?: string[]
   }
 }

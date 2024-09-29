@@ -26,7 +26,9 @@ export async function createUser(
   formData: FormData
 ): Promise<UserFormState> {
   const data = userFormDataDecoder(formData)
+  console.log(data)
   const result = userCreateSchema.safeParse(data)
+  console.log(result)
 
   if (!result.success) {
     console.log(result.error.flatten().fieldErrors)
@@ -43,6 +45,7 @@ export async function createUser(
         password: result.data.password,
         phone_number: result.data.phone_number,
         admin: result.data.admin,
+        birthDate: result.data.birthDate,
       },
     })
     console.log(user.id)
@@ -99,6 +102,7 @@ export async function updateUser(
         name: result.data.name,
         phone_number: result.data.phone_number,
         admin: result.data.admin,
+        birthDate: result.data.birthDate,
       },
     })
   } catch (error: unknown) {

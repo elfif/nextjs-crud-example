@@ -30,6 +30,7 @@ model User {
   city      String?
   state     String?
   country   String?
+  birthDate DateTime?
   admin     Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

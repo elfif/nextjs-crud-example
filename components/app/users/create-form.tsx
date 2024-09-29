@@ -11,6 +11,8 @@ import PhoneInput from 'react-phone-number-input'
 import { useState } from 'react'
 import { E164Number } from 'libphonenumber-js'
 import '@/styles/react-phone-number-input/style.css'
+import { DatePicker } from '@/components/ui/date-picker'
+import { formatDate } from '@/lib/utils'
 
 export function UserCreateForm() {
   const [formState, action] = useFormState<UserFormState, FormData>(
@@ -21,6 +23,7 @@ export function UserCreateForm() {
   )
 
   const [phone, setPhone] = useState<E164Number | undefined>()
+  const [birthDate, setBirthDate] = useState<Date | undefined>()
 
   return (
     <form action={action}>
@@ -49,6 +52,16 @@ export function UserCreateForm() {
           name='name'
           className={formState.errors.name && 'border-2 border-red-500'}
         />
+        {formState.errors.name && (
+          <div className='text-red-500'>
+            {formState.errors.name?.join(', ')}
+          </div>
+        )}
+      </div>
+      <div className='flex flex-col gap-y-1 my-4'>
+        <Label htmlFor='name'>Date de naissance</Label>
+        <DatePicker date={birthDate} setDate={setBirthDate} />  
+        <input type='hidden' name='birthDate' value={formatDate(birthDate)} />
         {formState.errors.name && (
           <div className='text-red-500'>
             {formState.errors.name?.join(', ')}
